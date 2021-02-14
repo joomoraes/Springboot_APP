@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.cloud.mc.entites.Category;
 import com.cloud.mc.entites.Order;
+import com.cloud.mc.entites.OrderItem;
 import com.cloud.mc.entites.Product;
 import com.cloud.mc.entites.User;
 import com.cloud.mc.entites.enums.OrderStatus;
 import com.cloud.mc.repositoryes.CategoryRepository;
+import com.cloud.mc.repositoryes.OrderItemRepository;
 import com.cloud.mc.repositoryes.OrderRepository;
 import com.cloud.mc.repositoryes.ProductRepository;
 import com.cloud.mc.repositoryes.UserRepository;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private ProductRepository ProductRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -68,5 +73,12 @@ public class TestConfig implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 	}
 }
