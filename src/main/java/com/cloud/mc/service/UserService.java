@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.cloud.mc.entites.User;
 import com.cloud.mc.repositoryes.UserRepository;
+import com.cloud.mc.service.exception.ResourceNotFoundException;
 
 
 @Component
@@ -22,7 +23,7 @@ public class UserService {
 	
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id)) ;
 	}
 	
 	public User insert(User obj) {
