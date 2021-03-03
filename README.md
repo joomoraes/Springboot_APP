@@ -41,8 +41,8 @@ on:
 
 jobs:
   analyze:
-    name: Analyze
-    runs-on: ubuntu-latest
+    name: João Pedro 
+    runs-on: windowns-latest
 
     strategy:
       fail-fast: false
